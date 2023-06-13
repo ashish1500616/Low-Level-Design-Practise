@@ -9,6 +9,9 @@ This repository contains
 
 Each case represents a specific system or problem domain.
 
+Learn how to design and implement large-scale systems. 
+Prep for the system design interview.
+
 Status
 
 - ⏳ Undergoing
