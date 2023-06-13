@@ -1,0 +1,3 @@
+[submodule "FoodDelivery"]
+	path = FoodDelivery
+	url = https://github.com/ashish1500616/FoodDeliveryLLD.git
