@@ -1,3 +1,6 @@
 [submodule "FoodDelivery"]
 	path = FoodDelivery
 	url = https://github.com/ashish1500616/FoodDeliveryLLD.git
+[submodule "JsonParserLLD"]
+	path = JsonParserLLD
+	url = https://github.com/ashish1500616/JsonParserLLD.git
