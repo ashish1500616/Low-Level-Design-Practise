@@ -22,9 +22,9 @@ Status
 
 1. Library Management System ❌ Still to do
 2. Chess Implementation ❌ Still to do
-3. Food Delivery ⏳ Undergoing
+3. Food Delivery ✅ Implemented
 4. Parking Lot ❌ Still to do
-5. Json Parser ❌ Still to do
+5. Json Parser ⏳ Undergoing
 6. Stock Trading ❌ Still to do
 7. Design Logger ❌ Still to do
 8. Elevator Design ❌ Still to do
