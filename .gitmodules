@@ -4,3 +4,6 @@
 [submodule "JsonParserLLD"]
 	path = JsonParserLLD
 	url = https://github.com/ashish1500616/JsonParserLLD.git
+[submodule "Design-Pattern-Practise"]
+	path = Design-Pattern-Practise
+	url = https://github.com/ashish1500616/Design-Pattern-Practise.git
