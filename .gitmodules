@@ -7,3 +7,6 @@
 [submodule "Design-Pattern-Practise"]
 	path = Design-Pattern-Practise
 	url = https://github.com/ashish1500616/Design-Pattern-Practise.git
+[submodule "StockTradingLLD"]
+	path = StockTradingLLD
+	url = https://github.com/ashish1500616/StockTradingLLD
