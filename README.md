@@ -38,35 +38,35 @@ labeled with its implementation status.
 
 ## Creational Patterns
 
-- Abstract Factory: ❌ Still to do
-- Builder: ❌ Still to do
-- Factory Method: ❌ Still to do
-- Prototype: ❌ Still to do
-- Singleton: ❌ Still to do
+- Abstract Factory: ✅ Implemented
+- Builder: ✅ Implemented
+- Factory Method: ✅ Implemented
+- Prototype: ✅ Implemented
+- Singleton: ✅ Implemented
 
 ## Structural Patterns
 
-- Adapter: ❌ Still to do
-- Bridge: ❌ Still to do
-- Composite: ❌ Still to do
-- Decorator: ❌ Still to do
-- Facade: ❌ Still to do
-- Flyweight: ❌ Still to do
-- Proxy: ❌ Still to do
+- Adapter: ✅ Implemented
+- Bridge: ✅ Implemented
+- Composite: ✅ Implemented
+- Decorator: ✅ Implemented
+- Facade: ✅ Implemented
+- Flyweight: ✅ Implemented
+- Proxy: ✅ Implemented
 
 ## Behavioral Patterns
 
-- Chain of Responsibility: ❌ Still to do
-- Command: ❌ Still to do
-- Interpreter: ❌ Still to do
-- Iterator: ❌ Still to do
-- Mediator: ❌ Still to do
-- Memento: ❌ Still to do
-- Observer: ❌ Still to do
-- State: ❌ Still to do
-- Strategy: ❌ Still to do
-- Template Method: ❌ Still to do
-- Visitor: ❌ Still to do
+- Chain of Responsibility: ✅ Implemented
+- Command: ✅ Implemented
+- Interpreter: ✅ Implemented
+- Iterator: ✅ Implemented
+- Mediator: ✅ Implemented
+- Memento: ✅ Implemented
+- Observer: ✅ Implemented
+- State: ✅ Implemented
+- Strategy: ✅ Implemented
+- Template Method: ✅ Implemented
+- Visitor: ✅ Implemented
 
 # Design Principles
 
