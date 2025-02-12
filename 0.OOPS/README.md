@@ -1118,3 +1118,290 @@ Remember:
 - Prefer composition over inheritance
 - Use the weakest relationship that solves the problem
 - Consider object lifecycles when choosing relationships
+
+## 10. Inheritance vs Abstract Classes: A Comprehensive Guide
+
+### 10.1 Understanding the Basics
+
+#### Inheritance
+- A fundamental OOP mechanism that allows a class to inherit properties and methods from another class
+- Represents an "IS-A" relationship
+- Supports code reuse and establishes a class hierarchy
+
+#### Abstract Class
+- A class that cannot be instantiated and may have abstract methods
+- Provides a common base class implementation
+- Can have both concrete and abstract methods
+
+### 10.2 Key Differences
+
+| Feature | Inheritance | Abstract Class |
+|---------|------------|----------------|
+| Purpose | Code reuse and type relationship | Template and partial implementation |
+| Instantiation | Concrete classes can be instantiated | Cannot be instantiated |
+| Method Implementation | All methods must be implemented | Can have both abstract and concrete methods |
+| Multiple Inheritance | Not supported in many languages (e.g., Java) | Not supported, but can implement multiple interfaces |
+| Constructor | Has constructor | Has constructor but can't be used to create objects |
+| Access Modifiers | All access modifiers allowed | All access modifiers allowed |
+
+### 10.3 When to Use What
+
+#### Use Inheritance When:
+- You have a clear "IS-A" relationship
+- Code reuse is the primary goal
+- Subclasses are specific versions of the parent
+- Changes to parent should affect all children
+
+```java
+// Good use of inheritance
+class Vehicle {
+    protected String brand;
+    public void start() { /* common start logic */ }
+}
+
+class Car extends Vehicle {
+    private int doors;
+    @Override
+    public void start() {
+        super.start();
+        // Car-specific start logic
+    }
+}
+```
+
+#### Use Abstract Class When:
+- You want to provide a template
+- Some common implementation is shared
+- You need to enforce certain methods
+- You have common state or behavior
+
+```java
+// Good use of abstract class
+abstract class PaymentProcessor {
+    protected String transactionId;
+    
+    // Common implementation
+    public final void generateId() {
+        this.transactionId = UUID.randomUUID().toString();
+    }
+    
+    // Must be implemented by subclasses
+    abstract void processPayment();
+}
+```
+
+### 10.4 Common Pitfalls and Solutions
+
+#### Inheritance Pitfalls:
+1. **Deep Hierarchy**
+   ```java
+   // Bad: Too deep
+   class Transport → Vehicle → Car → SportsCar → RaceCar
+   
+   // Better: Flatter hierarchy with interfaces
+   interface Vehicle { /* common contract */ }
+   class SportsCar implements Vehicle { /* implementation */ }
+   class RaceCar implements Vehicle { /* implementation */ }
+   ```
+
+2. **Tight Coupling**
+   ```java
+   // Bad: Tightly coupled
+   class Bird extends Animal {
+       @Override
+       void move() { fly(); }  // Assumes all birds fly
+   }
+   
+   // Better: Use composition
+   class Bird {
+       private MovementStrategy movement;
+       void move() { movement.execute(); }
+   }
+   ```
+
+#### Abstract Class Pitfalls:
+1. **Too Many Abstract Methods**
+   ```java
+   // Bad: Should be an interface
+   abstract class Logger {
+       abstract void log();
+       abstract void format();
+       abstract void write();
+   }
+   
+   // Better: Split into interface and abstract class
+   interface Loggable {
+       void log();
+   }
+   abstract class BaseLogger implements Loggable {
+       // Common implementation
+   }
+   ```
+
+2. **Concrete Methods Without Default Behavior**
+   ```java
+   // Bad: Empty concrete method
+   abstract class Processor {
+       public void process() { }  // No default behavior
+   }
+   
+   // Better: Make it abstract
+   abstract class Processor {
+       abstract public void process();
+   }
+   ```
+
+### 10.5 Design Best Practices
+
+1. **Favor Composition Over Inheritance**
+   ```java
+   // Instead of inheritance
+   class Rectangle extends Shape { }
+   
+   // Use composition
+   class Rectangle {
+       private Shape shape;
+       private Dimensions dimensions;
+   }
+   ```
+
+2. **Use Abstract Classes for Template Method Pattern**
+   ```java
+   abstract class DataMiner {
+       // Template method
+       public final void mine() {
+           openFile();
+           extractData();
+           parseData();
+           closeFile();
+       }
+       
+       abstract void extractData();
+       abstract void parseData();
+   }
+   ```
+
+3. **Combine with Interfaces**
+   ```java
+   interface Payable {
+       void pay();
+   }
+   
+   abstract class Employee implements Payable {
+       protected double salary;
+       
+       // Common implementation
+       public void calculateTax() {
+           return salary * 0.2;
+       }
+       
+       // Let subclasses implement
+       abstract public void pay();
+   }
+   ```
+
+### 10.6 Interview Questions
+
+1. **Q: What is the difference between inheritance and abstraction?**
+   - Inheritance is about reusing code and establishing relationships
+   - Abstraction is about hiding implementation details
+   - Abstract classes can use both concepts together
+
+2. **Q: Can we have a constructor in an abstract class?**
+   - Yes, but it can only be called from subclass constructors
+   - Used to initialize common state
+   - Cannot be used to create instances directly
+
+3. **Q: Why can't we instantiate an abstract class?**
+   - It may have incomplete implementations (abstract methods)
+   - It's meant to be a template for other classes
+   - It may represent an abstract concept
+
+4. **Q: When should we make a method abstract?**
+   - When there's no meaningful default implementation
+   - When subclasses must provide their own implementation
+   - When the behavior varies significantly between subclasses
+
+5. **Q: Can an abstract class have all concrete methods?**
+   - Yes, it's possible but uncommon
+   - Usually done to prevent instantiation
+   - Better to use regular class with private constructor in this case
+
+### 10.7 Real-World Examples
+
+1. **Document Processing System**
+```java
+abstract class Document {
+    protected String title;
+    protected String content;
+    
+    // Common implementation
+    public void save() {
+        validate();
+        beforeSave();
+        // Save logic
+        afterSave();
+    }
+    
+    // Template methods
+    abstract void validate();
+    abstract void beforeSave();
+    abstract void afterSave();
+}
+
+class PDFDocument extends Document {
+    @Override
+    void validate() {
+        // PDF-specific validation
+    }
+    
+    @Override
+    void beforeSave() {
+        // PDF preprocessing
+    }
+    
+    @Override
+    void afterSave() {
+        // PDF post-processing
+    }
+}
+```
+
+2. **Game Character System**
+```java
+abstract class GameCharacter {
+    protected int health;
+    protected int position;
+    
+    // Common behavior
+    public void move(int x, int y) {
+        position += calculateMovement(x, y);
+        afterMove();
+    }
+    
+    // Must be implemented by specific characters
+    abstract int calculateMovement(int x, int y);
+    abstract void afterMove();
+}
+
+class Player extends GameCharacter {
+    @Override
+    int calculateMovement(int x, int y) {
+        // Player-specific movement calculation
+    }
+    
+    @Override
+    void afterMove() {
+        // Update player state after movement
+    }
+}
+```
+
+Remember:
+- Choose inheritance for clear "IS-A" relationships
+- Use abstract classes for template method pattern
+- Combine with interfaces for flexible design
+- Keep hierarchies shallow and focused
+- Consider composition as an alternative
+- Use abstract methods when behavior varies significantly
+- Provide meaningful default implementations when possible
